@@ -1,0 +1,316 @@
+My mistakes during making front-end:
+-to use image as btn nest the img inside the button element.
+-don't define height instead use marigin to define the space from the top and bottom 
+ keeping div at center.
+-apply background using gradient it is more attractive.
+-Start appying the styling from the parent element and following the 
+descending order of hierarchy on applying style.
+-50% creates a round border
+-defining the height of parent nesting the button and defining the 
+width of img helps the keep image in boundry.
+-defining the padding initally would incorporate the every added element inside the boundry of the parent container.
+-centering in the flex-box can be done using
+ align-items:center;
+ justify-content:center;
+-define the width of the image at each section to keep the image size consistent 
+ 
+To do tasks:
+-add external javascript.
+-take the city name as input.
+-fetch weather data using city name in json file.
+-Dynamically change temperature  of the city.
+-Dynamically change the city name.
+-Dynamically change the weather icon.
+-Dynmically change the humidity value.
+-Dynamically change the windspeed value.
+
+
+learned things:
+Callback:
+In js the function are executed sequentially until asynchronous task are encountered. The js processes the asynchronous
+and also executes the code after it without waiting for the completion of asynchronous tasks.
+If such sequence happen then there might be logical error. Hence to wait till all the asynchronous tasks are completed 
+before executing further code we need a mechanism. 
+The callback is the mechanism in which the function is passed as an argument and it ensure the completion of 
+asychronous task.It is called at any part of the function body with keyword callback
+Without Callbacks:
+JavaScript executes other code while the asynchronous task is running, which can lead to out-of-order execution 
+for dependent code.
+
+With Callbacks:
+Callbacks ensure that code dependent on the completion of an asynchronous task runs only after the task is finished.
+
+Syntax:
+function functionName(arg.....,callback){
+    ......
+    ...
+    code //
+    callback();
+}
+
+functionName(passingFunctionName);
+
+In js, we can also pass the whole function in argument without using name instead of passing the function name.
+
+Asychronous function:
+The functions that run in parallel with other functions are called asynchronous function.
+setTimeout is the asychronous function that help create a delay effect in execution of code.
+Using setTimeout asychronous tasks can be simulated .
+Syntax:
+setTimeout( 
+    // code to execute after time runs out , delay time in milliseconds
+)
+
+For e.g :
+<body>
+<p id="Demo"></p>
+
+
+<script>
+setTimeout(displayFunction , 3000);
+
+function displayFunction(){
+    document.getElementByID("Demo").innerHtml="text after 3 secs delay";
+}
+</script>
+</body>
+
+Output:
+text after 3 secs delay
+
+setInterval()
+Another asychronous function is setInterval , it executes the group of code 
+in mentioned regular interval of time.
+Syntax:
+setInterval(
+    //code to execute , duration of interval
+)
+
+ E.g:- 
+setInterval(
+    console.log("counting") , 5000
+);
+
+This exapmple  executes the code inside setIntrval in every 5000 milliseconds(5 seconds);
+
+
+Object literal :
+In Js, object literal are the list of property name and values in format {name:value,....}.
+Object literal can also be called object initializer.
+object literal are similar in concept to classes in c++ language.
+
+creation of empty object literal :
+Normal way:
+const objectName ={}
+
+using new Keyword:
+const objectName = new Object();
+
+Values of the property can be assigned in two ways:
+1.Manually assigning using '.' operator 
+
+2.Using constructor function 
+    Create a specific function that is executed with creation of corresponding object type.
+    Also we can't manually add property when the object constructor is used.
+    Inside such function this keyword is used to handle each property.
+    It is used to creates multiple objects of similar type only differing the property values.
+
+
+Promises:
+In Js  it is the mechnism to handle the aychronous task more easily. 
+Using pormises we can wait for the asychronous task to complete along with 
+checking whether task was completed successfully or failed.
+Then based on the state of the task further execution is also handled with promise methods.
+Syntax :
+const p = new Promise(function (resolve , reject){
+    code ....
+    result= some value;
+    if ( someVAlue is True){
+        resolve("successfully completed tasks")
+    }
+    else{
+        reject("Tasks has failed");
+    }
+})
+
+Above was the overall syntax for creating the promise object, now to handle 
+the promise object we then and catch method.
+
+then method is executed if the task is completed successfully. 
+
+catch method is executed if the task is fails to complete.
+e.g :
+continuing above code:
+p.then(function(message){
+    console.log("This is inside then"+message);
+}).catch(function(message){
+    console.log("This is inside catch" + message)
+})
+
+Promise Chaining
+Promises can be chained to handle multiple tasks in sequence.
+code:
+const fetchUser = new Promise((resolve) => {
+    setTimeout(() => resolve("User fetched"), 1000);
+});
+
+const fetchPosts = new Promise((resolve) => {
+    setTimeout(() => resolve("Posts fetched"), 1000);
+});
+
+fetchUser
+    .then((userMessage) => {
+        console.log(userMessage);
+        return fetchPosts;
+    })
+    .then((postMessage) => {
+        console.log(postMessage);
+    })
+    .catch((error) => {
+        console.error("Error: " + error);
+    });
+
+
+
+
+
+1st question answer:
+
+function checkEvenNumber(s){
+    return new Promise((resolve,reject,s)=>{
+        if (s%2 ===0){
+            resolve("even number");
+        }
+        else {
+            reject("odd number");
+        }
+    });
+}
+
+2nd question and answer:
+function doubleNumber(num) {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(num * 2), 1000);
+    });
+}
+
+doubleNumber(2).then((num)=>{
+    doubleNumber(2).then((num)=>{cosole.log(num)})
+}).catch((num)=>console.log(num);)
+
+
+
+3nd question :
+Using promises:
+
+function fetchUser() {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve("User fetched"), 1000);
+    });
+}
+
+fetchUser().then(console.log);
+
+3rd question answer
+Using callback:
+function UserFetched(){
+    console.log("user fetched);
+}
+
+function fetchUser(callback){
+    return setTimeout(callback,1000);
+}
+
+fetchUser(UserFetched);
+
+
+4th question answer:
+function getData() {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve("Data fetched"), 2000);
+    });
+}
+
+Using promise:
+getData().then((data) => {
+    console.log(data);
+});
+
+Using async /await:
+async function myFunction (){
+    console.log(await getData());
+}
+
+5th question's answer:
+function asyncOperation(success, callback) {
+    return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+        if (success) {
+            resolve(null, "Operation successful!");
+        } else {
+            reject("Operation failed!");
+        }
+    }, 1000);})
+}
+
+Final question answer:
+function doubleNumber(num){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>resolve(num*2),1000);
+    });
+}
+
+async function processNumbers(arraylist){
+  for (let i=0 ; i< arraylist.length();i++){
+  console.log(await doubleNumber(arraylist[i]));
+  }
+}
+
+
+
+Total time taken to complete this tutorial:-
+With average of 40 min each day, I took 10 days to complete this project.
+In initial days , i revised the css that i previously learned, then i started working on the project.
+I learned lots of new concepts in javascript:
+-Asychronous and synchronous tasks.
+-Asychronous nature of javascript and handling methods(callback,promises and async/await).
+
+-Likewise , I learned about the document selecting elements which inlcudes:
+  -diff between queryselector and getByClassName
+  -changing of the css property using the javascript dynamically.
+-Also fetching data from the server using the exposed API of the organization, I used the 
+ api of the openweather.org and fetched the live weather data to display on my weather app.
+
+ 🚀 Built a Weather App using Vanilla JS, HTML, and CSS! 🌦️
+
+As I explore front-end development through small projects, this weather app helped me strengthen several key concepts:
+
+
+
+Revised CSS Flexbox and the difference between block & inline elements.
+
+Learned about JavaScript’s asynchronous nature and how it differs from synchronous execution.
+
+Understood callbacks, promises, and async/await for handling asynchronous   tasks.
+
+Noted the difference between getElementsByClassName() and querySelector().
+
+Fetched and managed real-time data using an API.
+
+
+
+This app allows users to check live weather updates by entering a location, using the OpenWeatherMap API.
+
+🔗 API Used: OpenWeatherMap.org
+
+🔗Github link: 
+
+Excited to keep building and learning! Let’s grow together. 🚀
+
+#LearningByBuilding #FrontendDevelopment #JavaScript #BeginnerProjects
+ 
+
+
+
+
+
