@@ -25,4 +25,4 @@ App Interface:
 
 ## App preview:
 
-**[Click here](#)**
+**[Click here](https://kz1232.github.io/Weather_app/)**
