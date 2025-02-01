@@ -19,9 +19,9 @@ It is the web-app build using the vanilla js , html and css that will show the l
 
 App Interface:
 
-![First Interface ](https://github.com/Kz1232/FrontEnd_Projects/blob/main/Weather_app/Images/First%20Interface.png?raw=true)
+![First Interface ](/Images/First_Interface.png)
 
-![First Interface ](/Weather_app/Images/weather-app.png)
+![First Interface ](/Images/weather-app.png)
 
 ## App preview:
 
